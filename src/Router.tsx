@@ -1,5 +1,6 @@
 import { Link, Outlet, RootRoute, Route, Router } from "@tanstack/react-router";
 import * as React from "react";
+import {Suspense} from "react";
 
 const TanStackRouterDevtools = import.meta.env.PROD
   ? () => null // Render nothing in production
@@ -23,7 +24,9 @@ function Root() {
       </div>
       <hr />
       <Outlet />
-      <TanStackRouterDevtools />
+        <Suspense fallback={<div>Loading...</div>}>
+            <TanStackRouterDevtools />
+        </Suspense>
     </>
   );
 }
